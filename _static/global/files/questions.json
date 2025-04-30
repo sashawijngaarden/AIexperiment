@@ -1,0 +1,58 @@
+{"lQuestions" : [
+    {
+        "question": "What is your age?",
+        "name": "age",
+        "type": "shortOpen",
+        "validate": "validAge" ,
+        "invalidMessage": "warningAge"
+    },    
+    {
+        "question": "Which gender do you identify the most with?",
+        "name": "gender",
+        "type": "radio",
+        "direction": "horizontal wrap",
+        "values": [1,2,3,4],
+        "labels": [
+            "Female",
+            "Male",
+            "Other",
+            "Prefer not to say"
+        ]
+    },      
+    {
+        "question": "What is your nationality?",
+        "name": "nationality",
+        "type": "autocomplete",
+        "list": "countryList"
+    },
+    {
+        "question": "Have you ever participated in an incentivized economic experiment (such as this one) before?",
+        "name": "prev_exp",
+        "type": "radio",
+        "direction": "horizontal wrap",
+        "values": [1,2,3],
+        "labels": ["Yes","No","Not sure / don't remember"]
+    },
+    {
+        "question": "Where would you put yourself in the socioeconomic ladder?",
+        "name": "SNE",
+        "type": "Likert",
+        "likertMax": 10,
+        "limits": ["worst off","best off"],
+        "confirmRequired" : true
+    },    
+    {
+        "question": "Where would you place yourself in the political scale from extremely liberal to extremely conservative?",
+        "name": "political",
+        "type": "Likert",
+        "likertMax": 10,
+        "limits": ["Liberal (left)","Conservative (right)"],
+        "confirmRequired" : true
+    },    
+    {
+        "question": "What do you think is the purpose of this study? Describe shortly in your own words.",
+        "name": "purpose",
+        "type": "longOpen",
+        "blank": "True"   
+    }
+]}
