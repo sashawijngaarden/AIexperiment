@@ -12,7 +12,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP   = None
     NUM_ROUNDS          = 1
     # TimeOut Seconds 
-    timeout_seconds = 0 # Amount of seconds before timeout. If 0, no timeout
+    timeout_seconds = 60 # Amount of seconds before timeout. If 0, no timeout
     # Template variables
     AvgDur              = '30'
     # Figures paths
@@ -60,12 +60,16 @@ class TimeOut(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.bTimeout
+        return getattr(player.participant, 'bTimeout', False)
     
     @staticmethod
     def js_vars(player: Player):
         return dict(
             sLinkReturn = CG.sLinkReturn,
         )
+
+def creating_session(subsession):
+    for player in subsession.get_players():
+        player.participant.bTimeout = False
 
 page_sequence = [Intro, TimeOut]

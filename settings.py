@@ -41,8 +41,8 @@ PARTICIPANT_FIELDS = [
     'iSelectedTrial',       # Trial selected for payment
     'bTimeout',             # Participant timed-out
     'sChoice',              # Decision of selected trial
-    'sTreatmentLogic',           # Treatment name
-    'sTreatmentFriendly',           # Treatment name
+    'sTreatmentLogic',      # Treatment name
+    'sTreatmentFriendly',   # Treatment name
 ]
 SESSION_FIELDS = [
 ]

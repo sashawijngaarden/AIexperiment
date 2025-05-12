@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+
+{% block PageContent %}
+
+<div class="center-msg">
+    <h2>End of main task</h2>
+    <p>
+        You have now completed all the product choice trials of the experiment.
+    </p>
+
+    <p>
+        One of your trials has been randomly selected to determine your bonus payment. 
+        Your bonus consists of:
+    </p>
+
+    <ul style="text-align: left, max-width: 600px, margin: 0 auto;">
+        <li><b>Monetary reward:</b> £{{ bonus }}</li>
+        <li><b>Environmental reward:</b> {{ trees }} tree(s) will be planted.</li>
+
+    </ul>
+
+    <p>
+        To receive your bonus, you must now complete a short questionnaire.
+    </p>
+
+    <p>
+        Please click the button below to proceed.
+    </p>
+
+    <button class="continue-btn">Continue to Questionnaire</button>
+</div>
+
+{% endblock %}

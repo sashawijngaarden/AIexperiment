@@ -11,7 +11,7 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'Task'
     PLAYERS_PER_GROUP = None
-    NUM_RROUNDS = 7 # Real Rounds
+    NUM_RROUNDS = 3 # Real Rounds
     NUM_PROUNDS = 3 # Practice Rounds
     NUM_ROUNDS = NUM_PROUNDS + NUM_RROUNDS
     # List of attributes (id)
@@ -20,7 +20,7 @@ class C(BaseConstants):
     # Template vars
     COL_NAMES   = ['A','B']
     # Paths 
-    PATH_TRIALS = '_static/global/files/dataNudge.csv'
+    PATH_TRIALS = '_static/global/files/myTrials.csv'
     IMG_PRICE      = "global/figures/P/"
     IMG_S            = "global/figures/S/S"
     IMG_Q            = "global/figures/Q/Q"
@@ -80,7 +80,7 @@ class Player(BasePlayer):
     Q2 = models.IntegerField()
     S1 = models.IntegerField()
     S2 = models.IntegerField()
-    Nudge = models.StringField()
+    Advice = models.StringField()
 
 def creating_session(subsession):
     # Load Session variables
@@ -88,8 +88,10 @@ def creating_session(subsession):
     if subsession.round_number==1:
         for player in subsession.get_players():
             p = player.participant
-            #### Randomize trials 
-            dbTrials = pd.read_csv(C.PATH_TRIALS)
+            # randomly assign condition to participant
+            p.condition = random.choice(['VN', 'VHL', 'SN', 'SHL']) 
+            #### Randomize trials of main task
+            dbTrials = pd.read_csv(C.PATH_TRIALS, sep=';')
             dbPractice  = dbTrials.iloc[:C.NUM_PROUNDS]  # Keep the first NUM_PROUNDS rows unchanged
             dbReal      = dbTrials.iloc[C.NUM_PROUNDS:].sample(frac=1).reset_index(drop=True)
             dbTrials = pd.concat([dbPractice, dbReal], ignore_index=True)
@@ -97,18 +99,30 @@ def creating_session(subsession):
             dbTrials['sustRight'] = rnd.choice([True, False], size=len(dbTrials))
             p.dbTrials = dbTrials
             # print(dbTrials)
+            
             #### Order of attributes
-            # create hardcopy excluding price and advice
-            remaining_attrs = [attr for attr in C.ATTR_ID if attr not in ['P', 'N']]
-            price_pos = random.choice([1, len(remaining_attrs)]) # Decide price position (2nd or 1-before-last)
-            random.shuffle(remaining_attrs) # Randomly shuffle sustainability and quality
-            remaining_attrs.insert(price_pos, 'P') # Insert price position
-            # randomly decide position for advice (either first or last)
+            lPos = [None, None, None, None]
+            # Random N position (first or last)
             if random.choice([True, False]):
-                lPos = ['N'] + remaining_attrs
+                lPos[0] = 'N'
+                n_positions = [1, 2, 3]
             else:
-                lPos = remaining_attrs + ['N']
-            p.lPos = lPos               # Store it as a participant variable
+                lPos[3] = 'N'
+                n_positions = [0, 1, 2]
+            # Random P position (second or third)
+            if random.choice([True, False]):
+                p_index = 1 # second position
+            else:
+                p_index = 2 # third position
+            lPos[p_index] = 'P'
+            # Randomly assign Q and S to remaining spots
+            remaining_indices = [i for i in n_positions if lPos[i] is None]
+            q_s = ['Q', 'S']
+            random.shuffle(q_s)
+            for idx, val in zip(remaining_indices, q_s):
+                lPos[idx] = val
+            p.lPos = lPos # store final order as participant variable
+
             #### Select trial for payment (from the first round after practice rounds to the last)
             p.iSelectedTrial = random.randint(C.NUM_PROUNDS+1,C.NUM_ROUNDS)
 
@@ -126,7 +140,8 @@ def creating_session(subsession):
         player.Q2               = trialValues['Q2']
         player.S1               = trialValues['S1']
         player.S2               = trialValues['S2']
-        player.Nudge            = trialValues['NUDGE']
+        col_name                = f'Advice-{p.condition}'
+        player.Advice            = trialValues[col_name]
         player.sustRight        = trialValues['sustRight']
         ## function that retrieves data from csv to player variables. 
 
@@ -159,12 +174,18 @@ def attributeList(player):
                 values  = [player.S1,player.S2]
                 path    = C.IMG_S
             case 'N':
-                values  = [player.Nudge]
+                values  = [player.Advice]
+                path    = None
         if player.sustRight:
             print(f'reverse {values}{values[::-1]}')
             values = values[::-1]
-        for v in values:
-            lPaths.append(f"{path}{v}.png")
+        if id == 'N':
+            # For advice, just keep text as it is
+            lPaths = values
+        else:
+            for v in values:
+                lPaths.append(f"{path}{v}.png")
+       
         # Create object with all the relevant variables
         Attr = {
             'id'        : id,
@@ -202,6 +223,12 @@ class Decision(Page):
             p.sChoice = player.sChoice   
             print(f"Decision in selected trial recorded: {p.sChoice}")
 
+class PracticeDone(Page):
+    template_name = '_templates/global/PracticeDone.html'
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == C.NUM_PROUNDS
 
 class FixCross(Page):
     form_model = 'player'
@@ -227,6 +254,11 @@ class Confidence(Page):
     form_fields     = [ 'sStartConf','sEndConf', 'dRT_conf','iConfidence']
     template_name   = 'global/Confidence.html'
     
+    # Skip confidence at last practice trial to show message
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number != C.NUM_PROUNDS
+
     @staticmethod
     def vars_for_template(player: Player):
         p = player.participant
@@ -236,4 +268,4 @@ class Confidence(Page):
 
 
 
-page_sequence = [SideButton, Decision, Confidence]
+page_sequence = [SideButton, Decision, Confidence, PracticeDone]

@@ -25,6 +25,7 @@ class C(BaseConstants):
     figUvA_logo         = 'global/figures/UvA_logo.png'
     path1               = 'global/figures/example1.png'
     path2               = 'global/figures/example2.png'
+    path3               = 'global/figures/example3.png'
     pathGif             = 'global/figures/demoMouseCrop.gif'
     pathData            = '_static/global/files/Data4Exp.csv'
     imgCandidate        = "global/figures/candidate.png"
@@ -59,15 +60,7 @@ def creating_session(subsession):
         for player in subsession.get_players():
             # Store any treatment variables or things that stay constant across rounds/apps
             p = player.participant
-            # When creating the session, you can define whether you have a random treatment or a specific one. 
-            if s.config['treatmentLogic']=='random':
-                p.sTreatmentLogic = random.choice(['value','nudge'])
-            else:
-                p.sTreatment = s.config['treatment']
-            # Randomly selected trial
-            p.iSelectedTrial = random.randint(C.iPracticeRounds,C.iNumTrials)
-
-            ## LOAD HERE YOUR DATABASE 
+            
 
 
 
@@ -84,17 +77,10 @@ class Instructions(Page):
         p = player.participant
         return dict(
             lSolutions = [
-                'a','b', 'a', str(C.iNumTrials) # Solutions to control questions
+                'b','c', 'yes' # Solutions to control questions
             ]
         )
     
-    @staticmethod
-    def vars_for_template(player: Player):
-        # Variables for HTML
-        p = player.participant
-        return dict(
-            Treatment = p.sTreatment
-        )
     
 
 page_sequence = [Instructions]

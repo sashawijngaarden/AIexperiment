@@ -1,0 +1,30 @@
+{{ extends "global/Page.html" }}
+
+{{ block PageContent }}
+
+    <div class="practice-msg">
+        <h2>You have completed the practice trials!</h2>
+        <p>Press the button to continue.</p>
+        <button class="continue-btn" > Continue </button>
+    </div>
+
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    .practice-msg {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        text-align: center;
+    }
+
+    .practice-msg h2 {
+        font-size: 1.8em; /* slightly bigger by default*/
+    }
+</style>
+
+
+{{ endblock }}

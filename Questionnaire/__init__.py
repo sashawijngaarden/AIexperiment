@@ -14,7 +14,7 @@ class C(BaseConstants):
     # File location
     sQuestPath = '_static/global/files/questions.json'
     # Message
-    sMessage = 'The main task of the experiment has ended. Now we will ask you to answer a brief questionnaire. After the questionnaire we will inform you if you have been selected for the bonus payment.'
+    sEndMessage = 'The main task of the experiment has ended. Now we will ask you to answer a brief questionnaire. After the questionnaire we will inform you if you have been selected for the bonus payment.'
     # Questions 
     text_file = open(sQuestPath)
     lQuestions = json.load(text_file)['lQuestions']
@@ -72,17 +72,37 @@ class Questionnaire(Page):
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
-        pass 
-        # If you need to store something here for the results page, do it here.
+        p = player.participant
+        
+        if player.round_number == p.iSelectedTrial:
+            # save values from chosen product
+            if player.sChoice == 'A':
+                value_score = player.P1 # price-related value
+                sust_score = player.S1 # sustainability-related score
+            else:
+                value_score = player.P2
+                sust_score = player.S2
+
+            ## Bonus calculations
+            bonus = 1.00 + ((8.00 - value_score) / 3.0)
+            trees = sust_score
+
+            player.payoff = round(bonus, 2)
+            p.vars['trees_planted'] = trees
+            p.vars['bonus_amount'] = round(bonus, 2)
+        
 
 
 class EndMessage(Page):
-    template_name = 'global/Message.html'
+    template_name = 'global/EndMessage.html'
 
     @staticmethod
     def vars_for_template(player: Player):
+        p = player.participant
         return dict(
-            MessageText = C.sMessage
+            bonus=round(player.participant.vars.get('bonus_amount', 0), 2),
+            trees=int(player.participant.vars.get('trees_planted', 0)),
+            MessageText = C.sEndMessage
         )
     
 page_sequence = [EndMessage,Questionnaire]

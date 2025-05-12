@@ -1,4 +1,5 @@
 {"lQuestions" : [
+
     {
         "question": "What is your age?",
         "name": "age",
@@ -26,6 +27,13 @@
         "list": "countryList"
     },
     {
+        "question": "What is your highest level of completed education?",
+        "name": "education",
+        "type": "radio",
+        "values": [1, 2, 3, 4, 5],
+        "labels": ["High school", "Bachelor's", "Master's", "PhD", "Other"]
+    },
+    {
         "question": "Have you ever participated in an incentivized economic experiment (such as this one) before?",
         "name": "prev_exp",
         "type": "radio",
@@ -48,11 +56,112 @@
         "likertMax": 10,
         "limits": ["Liberal (left)","Conservative (right)"],
         "confirmRequired" : true
-    },    
+    },
+
+
     {
-        "question": "What do you think is the purpose of this study? Describe shortly in your own words.",
-        "name": "purpose",
-        "type": "longOpen",
-        "blank": "True"   
+        "question": "How familiar are you with AI systems?",
+        "name": "familiarity_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Not familiar","Very familiar"]
+    },
+    {
+        "question": "How much do you trust AI systems in general?",
+        "name": "trust_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Don't trust at all","Completely trust"]
+    },
+    {
+        "question": "How anxious do AI systems make you feel?",
+        "name": "anxiety_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Not at all","Very much"]
+    },
+    {
+        "question": "How interested are you in AI and its applications?",
+        "name": "interest_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Not interested","Very interested"]
+    },
+    {
+        "question": "To what extent do you think it is ethical to use AI to influence consumer decisions?",
+        "name": "ethical_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Not ethical","Completely ethical"]
+    },
+
+
+    {
+        "question": "What was the most important factor for your decisions?",
+        "name": "motivation",
+        "type": "radio",
+        "direction": "horizontal wrap",
+        "values": [1,2,3,4],
+        "labels": ["Price", "Sustainability", "Quality", "Advice"]
+    },
+    {
+        "question": "Did you follow the AI's advice?",
+        "name": "follow_advice",
+        "type": "radio",
+        "direction": "horizontal wrap",
+        "values": [1,2,3],
+        "labels": ["Yes", "No", "Sometimes"]
+    },
+    {
+        "question": "Were you motivated by your own preferences or by the AI's suggestions?",
+        "name": "motivation_source",
+        "type": "radio",
+        "direction": "horizontal wrap",
+        "values": [1,2,3],
+        "labels": ["Own preferences", "AI's suggestions", "Both equally"]
+    },
+
+
+    {
+        "question": "The AI recommender system was trustworthy.",
+        "name": "trustworthy",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
+    },
+    {
+        "question": "The AI influenced my decisions.",
+        "name": "influence",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
+    },
+    {
+        "question": "The AI's advice aligned with my values.",
+        "name": "value_alignment",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
+    },
+    {
+        "question": "The AI recommendations felt human-like.",
+        "name": "human_like",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Robotic", "Human-like"]
+    },
+    {
+        "question": "The AI recommender system gave objective advice.",
+        "name": "objective",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
+    },
+    {
+        "question": "I would accept this kind of AI recommender system in real only shopping environments.",
+        "name": "accept_realevents",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
     }
 ]}
