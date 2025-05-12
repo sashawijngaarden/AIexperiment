@@ -5,7 +5,9 @@ from collections import Counter
 from numpy import random as rnd
 import numpy as np
 doc = """
-Your app description
+This app provides participants with instructions on how to complete the experiment.
+It includes an overview of the task, a step-by-step explanation, and comprehensive questions
+to ensure understanding before starting the practice trials.
 """
 
 

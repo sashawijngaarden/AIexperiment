@@ -3,7 +3,9 @@ import random
 from Instructions import C as CG
 
 doc = """
-Your app description
+This app presents participants with an informed consent before they begin the experiment.
+If a participant remains idle beyond a set time limit, they are shown a timeout message
+and excluded from the study.
 """
 
 

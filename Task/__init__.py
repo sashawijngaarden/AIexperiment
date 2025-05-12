@@ -4,7 +4,10 @@ import random
 import pandas as pd 
 
 doc = """
-Your app description
+This app is the core of the experiment. Participants complete a series of decision-making trials,
+choosing between two fictitious products that vary in price, quality and sustainability. Each trial
+contains one AI advice, recommending either product A or B. The frist few trials are practice rounds,
+the rest are real and one will be randomly selected for the bonus payout.
 """
 
 
@@ -80,7 +83,7 @@ class Player(BasePlayer):
     Q2 = models.IntegerField()
     S1 = models.IntegerField()
     S2 = models.IntegerField()
-    Advice = models.StringField()
+    Nudge = models.StringField()
 
 def creating_session(subsession):
     # Load Session variables
@@ -103,25 +106,21 @@ def creating_session(subsession):
             #### Order of attributes
             lPos = [None, None, None, None]
             # Random N position (first or last)
-            if random.choice([True, False]):
-                lPos[0] = 'N'
-                n_positions = [1, 2, 3]
-            else:
-                lPos[3] = 'N'
-                n_positions = [0, 1, 2]
+            n_index = random.choice([0, 3])
+            lPos[n_index] = 'N'
+
             # Random P position (second or third)
-            if random.choice([True, False]):
-                p_index = 1 # second position
-            else:
-                p_index = 2 # third position
+            p_index = random.choice([1, 2])
             lPos[p_index] = 'P'
+
             # Randomly assign Q and S to remaining spots
-            remaining_indices = [i for i in n_positions if lPos[i] is None]
-            q_s = ['Q', 'S']
-            random.shuffle(q_s)
-            for idx, val in zip(remaining_indices, q_s):
+            remaining_indices = [i for i, v in enumerate(lPos) if v is None]
+            qs = ['Q', 'S']
+            random.shuffle(qs)
+            for idx, val in zip(remaining_indices, qs):
                 lPos[idx] = val
             p.lPos = lPos # store final order as participant variable
+            print(f"[DEBUG] Final attribute order: {lPos}")
 
             #### Select trial for payment (from the first round after practice rounds to the last)
             p.iSelectedTrial = random.randint(C.NUM_PROUNDS+1,C.NUM_ROUNDS)
@@ -140,9 +139,17 @@ def creating_session(subsession):
         player.Q2               = trialValues['Q2']
         player.S1               = trialValues['S1']
         player.S2               = trialValues['S2']
-        col_name                = f'Advice-{p.condition}'
-        player.Advice            = trialValues[col_name]
+        col_name                = f'Nudge-{p.condition}'
         player.sustRight        = trialValues['sustRight']
+        advice_text             = trialValues[col_name]
+
+        if player.sustRight:
+            if "Product A" in advice_text:
+                advice_text = advice_text.replace("Product A", "Product B")
+            elif "Product B" in advice_text:
+                advice_text = advice_text.replace("Product B", "Product A")
+        
+        player.Nudge            = advice_text
         ## function that retrieves data from csv to player variables. 
 
 def numToFloat(value):
@@ -151,18 +158,14 @@ def numToFloat(value):
 
 def attributeList(player):
     lPos = player.participant.lPos
-
     lAttributes = []
-    lOrder      = []
-    for i in range(len(C.ATTR_ID)):
-        id                  = C.ATTR_ID[i]      
-        name                = C.ATTR_NAMES[i]  
-        # Store the order of the list
-        lOrder.append(lPos.index(id))
 
+    for id in lPos:     
+        name                = C.ATTR_NAMES[C.ATTR_ID.index(id)]  
         lPaths = []
         values = []
-        path = []
+        path = None
+
         match id:
             case 'P': 
                 values  = [numToFloat(player.P1),numToFloat(player.P2)]
@@ -174,11 +177,12 @@ def attributeList(player):
                 values  = [player.S1,player.S2]
                 path    = C.IMG_S
             case 'N':
-                values  = [player.Advice]
+                values  = [player.Nudge]
                 path    = None
+        
         if player.sustRight:
-            print(f'reverse {values}{values[::-1]}')
-            values = values[::-1]
+            values = values[::-1] # reverse if sustainable product is on the right
+        
         if id == 'N':
             # For advice, just keep text as it is
             lPaths = values
@@ -194,8 +198,7 @@ def attributeList(player):
         }
         lAttributes.append(Attr)
     
-    lFinal = [ lAttributes[x] for x in lOrder]
-    return lFinal
+    return lAttributes
 
 # PAGES
 

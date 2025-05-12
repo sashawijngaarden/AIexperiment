@@ -3,7 +3,9 @@ import json
 import time
 
 doc = """
-Your app description
+This app administers a post-task questionnaire to collect demographics, attitudes  toward AI, motivation,
+and perceptions of the AI recommender system. It also calculates and displays the participant's bonus payout 
+and environmental reward based on their choice on one randomly chosen trial.
 """
 
 
