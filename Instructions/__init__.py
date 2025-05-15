@@ -57,11 +57,10 @@ class Player(BasePlayer):
     
 def creating_session(subsession):
     # Load Session variables
-    s = subsession.session 
     if subsession.round_number ==1:
         for player in subsession.get_players():
-            # Store any treatment variables or things that stay constant across rounds/apps
             p = player.participant
+            p.condition = random.choice(['VN', 'VHL', 'SN', 'SHL'])
             
 
 

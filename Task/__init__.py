@@ -91,8 +91,8 @@ def creating_session(subsession):
     if subsession.round_number==1:
         for player in subsession.get_players():
             p = player.participant
-            # randomly assign condition to participant
-            p.condition = random.choice(['VN', 'VHL', 'SN', 'SHL']) 
+            # retrieve condition
+            condition = p.condition
             #### Randomize trials of main task
             dbTrials = pd.read_csv(C.PATH_TRIALS, sep=';')
             dbPractice  = dbTrials.iloc[:C.NUM_PROUNDS]  # Keep the first NUM_PROUNDS rows unchanged
@@ -160,8 +160,18 @@ def attributeList(player):
     lPos = player.participant.lPos
     lAttributes = []
 
-    for id in lPos:     
-        name                = C.ATTR_NAMES[C.ATTR_ID.index(id)]  
+    for id in lPos:   
+        if id == 'N':
+            condition = player.participant.condition
+            if condition in ['VHL', 'SHL']:
+                name = '<img src="/static/global/figures/N/humanAI.png" height="90">'
+            elif condition in ['VN', 'SN']:
+                name = '<img src="/static/global/figures/N/neutralAI.png" height="90">'
+            else:
+                name = "Advice"
+        else:
+            name                = C.ATTR_NAMES[C.ATTR_ID.index(id)]  
+        
         lPaths = []
         values = []
         path = None

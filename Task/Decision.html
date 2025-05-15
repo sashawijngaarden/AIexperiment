@@ -22,7 +22,7 @@
     </div>
     {{ for attr in lAttr }}
     <div class="row" id="row-{{ attr.id }}">
-        <div class="table-item right row-name" >  {{ attr.name }} </div>
+        <div class="table-item right row-name" >  {{ attr.name|safe }} </div>
         
         {{ if attr.id == 'N' }}
         <div class="table-item mt-tgt cell cell-{{ attr.id}} row-{{attr.id}} colspan-2 hide" id="cell-{{attr.id}}">
