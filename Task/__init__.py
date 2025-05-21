@@ -14,7 +14,7 @@ the rest are real and one will be randomly selected for the bonus payout.
 class C(BaseConstants):
     NAME_IN_URL = 'Task'
     PLAYERS_PER_GROUP = None
-    NUM_RROUNDS = 3 # Real Rounds
+    NUM_RROUNDS = 57 # Real Rounds
     NUM_PROUNDS = 3 # Practice Rounds
     NUM_ROUNDS = NUM_PROUNDS + NUM_RROUNDS
     # List of attributes (id)
@@ -233,8 +233,23 @@ class Decision(Page):
         p = player.participant
         
         if player.round_number == p.iSelectedTrial: 
-            p.sChoice = player.sChoice   
-            print(f"Decision in selected trial recorded: {p.sChoice}")
+            p.sChoice = player.sChoice   #save choice
+
+            if player.sChoice == 'A':
+                value_score = player.P1
+                sust_score = player.S1
+            else:
+                value_score = player.P2
+                sust_score = player.S2
+
+            bonus = 1.00 + ((8.00 - value_score) / 3.0)
+            trees = sust_score
+
+            player.payoff = round(bonus, 2)
+            p.vars['trees_planted'] = trees
+            p.vars['bonus_amount'] = round(bonus, 2)
+
+            print(f"[DEBUG] Bonus calculated: {bonus}, Trees: {trees}")
 
 class PracticeDone(Page):
     template_name = '_templates/global/PracticeDone.html'

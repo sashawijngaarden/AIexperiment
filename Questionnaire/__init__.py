@@ -72,28 +72,9 @@ class Questionnaire(Page):
             sBodyName = 'page-content',
         )
 
-    @staticmethod
-    def before_next_page(player: Player, timeout_happened):
-        p = player.participant
         
-        if player.round_number == p.iSelectedTrial:
-            # save values from chosen product
-            if player.sChoice == 'A':
-                value_score = player.P1 # price-related value
-                sust_score = player.S1 # sustainability-related score
-            else:
-                value_score = player.P2
-                sust_score = player.S2
-
-            ## Bonus calculations
-            bonus = 1.00 + ((8.00 - value_score) / 3.0)
-            trees = sust_score
-
-            player.payoff = round(bonus, 2)
-            p.vars['trees_planted'] = trees
-            p.vars['bonus_amount'] = round(bonus, 2)
-        
-
+class AfterTask(Page):
+    template_name = 'global/AfterTask.html'
 
 class EndMessage(Page):
     template_name = 'global/EndMessage.html'
@@ -107,4 +88,4 @@ class EndMessage(Page):
             MessageText = C.sEndMessage
         )
     
-page_sequence = [EndMessage,Questionnaire]
+page_sequence = [AfterTask,Questionnaire,EndMessage]
