@@ -128,7 +128,7 @@
         "limits": ["Own preferences", "AI's suggestions"]
     },
     {
-        "question": "I would accept this kind of AI recommender system in real only shopping environments.",
+        "question": "I would accept this kind of AI recommender system in real online shopping environments.",
         "name": "reallife_AI",
         "type": "Likert",
         "likertMax": 7,

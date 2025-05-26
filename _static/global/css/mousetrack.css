@@ -32,18 +32,21 @@
 }
 
 .btn-row {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
 }
 
-.table-item {
-    width : 10vw;
+.btn-row .table-item {
+    width: 10vw;
     text-align: center;
-    
 }
 
-.right {
+
+.btn-row .table-item.right {
     text-align: right;
-    font-size: x-large; 
     width: 15vw;
 }
 
@@ -67,12 +70,21 @@
 }
 
 .dec-btn, .between-btn {
-    border-radius: 5%;
+    border-radius: 0.5rem;
     color: white;
     background-color: darkcyan;
-    padding: 10px
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-width: 8rem;
+    cursor: pointer;
+    border: none;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* soft shadow */
+    transition: background-color 0.2s ease;
 }
 
+.dec-btn:hover, .between-btn:hover {
+    background-color: #007777; /* Slightly darker for hover */
+}
 
 .hide {
     opacity: 0;

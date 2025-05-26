@@ -25,9 +25,10 @@ class C(BaseConstants):
     iBonus              = '2 pounds'
     # Figs/Files paths
     figUvA_logo         = 'global/figures/UvA_logo.png'
-    path1               = 'global/figures/example1.png'
-    path2               = 'global/figures/example2.png'
-    path3               = 'global/figures/example3.png'
+    path1               = 'global/figures/Instructions/example1.png'
+    path2               = 'global/figures/Instructions/example2.png'
+    path3               = 'global/figures/Instructions/example3.png'
+    path4               = 'global/figures/Instructions/example4.png'
     pathGif             = 'global/figures/demoMouseCrop.gif'
     pathData            = '_static/global/files/Data4Exp.csv'
     imgCandidate        = "global/figures/candidate.png"

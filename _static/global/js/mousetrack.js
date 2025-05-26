@@ -12,7 +12,12 @@ window.addEventListener('DOMContentLoaded', () => {
     lButtonsMT = document.getElementsByClassName(sTypeReveal);
     for (let i=0; i<lButtonsMT.length; i++) {
         let elem = lButtonsMT[i];
-        CreateMT(elem,elem.id);
+
+        if (elem.id === 'row-decision' || elem.classList.contains('dec-row')) {
+            continue;
+        }
+
+        CreateMT(elem, elem.id);
     }
 
     // Decision Buttons 

@@ -8,10 +8,10 @@
     <div class="slide"> 
         <div class="text-container">
             <h2> Welcome! </h2>
-            <p> In this experiment, you will choose between two fictitious products on each trial. Each product <b>differs in quality, price and sustainability</b>. You will also receive advice from an AI-recommender system. </p>
+            <p> In this experiment, you will choose between two fictitious products on each trial. Each product <b>differs in quality, price and sustainability</b>. You will also receive <b>advice</b> from an AI shopping assistant (SA). </p>
             <ol>
-                <li> On each trial you will see a table with product attributes (price, quality, sustainability). </li>
-                <li> Hovering over the attributes reveals their value! </li>
+                <li> On each trial you will see a table with product attributes (price, quality, sustainability) and advice from the AI shopping assistant. </li>
+                <li> Hovering over the attributes reveals their values! </li>
                 <!-- color coded text can help guide participants a bit more -->
                 <!-- I usually make the pictures in powerpoint. -->
             </ol>
@@ -27,19 +27,23 @@
         <div class="text-container">
             <h2> How it works: </h2>
             <ul>
-                <li> Move your mouse over an attribute (price, quality, sustainability) to reveal its value. </li>
+                <li> Move your mouse over an attribute (price, quality, sustainability) to reveal its values. </li>
                 <li> For advice, hover over the entire row to see the recommendation. </li>
-                <li> Make your choice by <div class="redbold">clicking the button</div> for either Product A or Product B. </li>
                 <!-- Remember that <div class="redbold">color-coded</div>, <b>bold</b> or <i>italic</i> text might help -->
                 <!-- You can put horizontal pictures too! -->
             </ul>
-
+        </div>
+        <div class="img-container"> <img src="{{ static C.path3 }}" class="img-instructions" alt="example of decision screen" id="img-example3"> </div>
+        <div class="text-container">
+            <ul>
+                <li> Make your choice by <div class="redbold">clicking the button</div> for either Product A or Product B. </li>
+            </ul>
         </div>
     </div> 
 
     <!-- Slide 3: Confidence -->
      <div class="slide vertical">
-        <div class="img-container"> <img src="{{ static C.path3 }}" class="img-instructions" alt="example of decision screen" id="img-example3"> </div>
+        <div class="img-container"> <img src="{{ static C.path4 }}" class="img-instructions" alt="example of decision screen" id="img-example4"> </div>
         <div class="text-container">
             <p> After each decision, you will rate how <b>confident</b> you are in your choice. </p>
             <p> First, you will complete 3 practice trials to get familiar with the task. </p>
@@ -123,18 +127,23 @@
 
 <style>
     /* If there are small things, you can always define them within this page. If too much style changes, make a new css file */
-    #img-example {
-        width: 50vw;
+    #img-example1 {
+        width: 30vw;
         height: auto;
     }
 
     #img-example2 {
-        width: 75vw;
+        width: 30vw;
         height: auto;
     }
 
     #img-example3 {
-        width: 75vw;
+        width: 30vw;
+        height: auto;
+    }
+
+    #img-example4 {
+        width: 50vw;
         height: auto;
     }
 

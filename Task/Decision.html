@@ -37,15 +37,14 @@
         {{ endif }}
     </div>
     {{ endfor }}
-    <div class="row btn-row">
-        <div class="table-item right">  </div>
-        {{ for col in C.COL_NAMES}}
-            <div class="table-item"> 
-                <button type="button" class="dec-btn" id="btn-{{ col }}" > Choose {{ col }} </button> 
-            </div>
-        {{ endfor }}
-
-       
+    <div class="row dec-row" id="row-decision">
+        <div class="table-item right"> </div>
+        <div class="table-item">
+            <button type="button" class="dec-btn" id="btn-A">Choose A</button>
+        </div>
+        <div class="table-item">
+            <button type="button" class="dec-btn" id="btn-B">Choose B</button>
+        </div>
     </div>
 </div>
 
