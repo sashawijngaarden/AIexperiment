@@ -56,6 +56,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     tree_country = models.StringField(blank=True)
 
+
 # FUNCTIONS
     
 def creating_session(subsession):
@@ -85,6 +86,16 @@ class Instructions(Page):
             ]
         )
     
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        if not player.tree_country:
+            player.tree_country = random.choice([
+                'Brazil', 'Canada', 'Colombia', 'Costa Rica', 'Dominican Republic',
+                'Ecuador', 'Guatemala', 'Haiti', 'Honduras', 'India', 'Indonesia',
+                'Kenya', 'Mexico', 'Peru', 'Rwanda', 'Tanzania', 'Uganda',
+                'United States', 'Vietnam'
+            ])
+        player.participant.vars["tree_country"] = player.tree_country
     
 
 page_sequence = [Instructions]

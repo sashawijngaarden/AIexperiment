@@ -20,7 +20,7 @@
                 <li> Would you like to choose where to plant the trees? 
                     <br>
                     <label for="tree-country">Select a country:</label>
-                    <input type="text" id="tree-country" name="tree-country-visible" list="countryList" class="text-input" placeholder="e.g., Kenya">
+                    <input type="text" id="tree_country" name="tree_country" list="countryList" class="text-input" placeholder="e.g., Kenya">
                     <datalist id="countryList">
                         <option value="Brazil"></option>
                         <option value="Canada"></option>
@@ -42,7 +42,6 @@
                         <option value="United States"></option>
                         <option value="Vietnam"></option>
                     </datalist>
-                    <input type="hidden" name="tree_country" id="tree_country_hidden">
                 </li>
             </ul>
             <i>Press → to continue reading </i>
@@ -291,6 +290,9 @@
   }
 
   window.addEventListener("DOMContentLoaded", ()=>{
+    document.getElementById("tree-country").addEventListener("change", function () {
+        document.getElementById("tree-country-hidden").value = this.value;
+    });
     // Get divs to add tooltips
     let lGreen = document.getElementsByClassName("greenbold");
     let lBlue = document.getElementsByClassName("bluebold");

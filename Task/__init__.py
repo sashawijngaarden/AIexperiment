@@ -14,7 +14,7 @@ the rest are real and one will be randomly selected for the bonus payout.
 class C(BaseConstants):
     NAME_IN_URL = 'Task'
     PLAYERS_PER_GROUP = None
-    NUM_RROUNDS = 57 # Real Rounds
+    NUM_RROUNDS = 20 # Real Rounds
     NUM_PROUNDS = 3 # Practice Rounds
     NUM_ROUNDS = NUM_PROUNDS + NUM_RROUNDS
     # List of attributes (id)

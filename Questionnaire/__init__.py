@@ -47,6 +47,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     iCorrect = models.IntegerField()
+    tree_country = models.StringField(blank=True)
 
 for i in range(len(C.lVars)):
     name, bBlank = C.lVars[i]
@@ -85,7 +86,8 @@ class EndMessage(Page):
         return dict(
             bonus=round(player.participant.vars.get('bonus_amount', 0), 2),
             trees=int(player.participant.vars.get('trees_planted', 0)),
-            MessageText = C.sEndMessage
+            MessageText = C.sEndMessage,
+            country=player.participant.vars.get('tree_country', "a selected location")
         )
     
 page_sequence = [AfterTask,Questionnaire,EndMessage]
