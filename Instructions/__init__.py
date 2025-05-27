@@ -25,10 +25,12 @@ class C(BaseConstants):
     iBonus              = '2 pounds'
     # Figs/Files paths
     figUvA_logo         = 'global/figures/UvA_logo.png'
-    path1               = 'global/figures/Instructions/example1.png'
-    path2               = 'global/figures/Instructions/example2.png'
-    path3               = 'global/figures/Instructions/example3.png'
-    path4               = 'global/figures/Instructions/example4.png'
+    path1               = 'global/figures/Instructions/examp1.png'
+    path2               = 'global/figures/Instructions/examp2.png'
+    path3               = 'global/figures/Instructions/examp3.png'
+    path4               = 'global/figures/Instructions/examp4.png'
+    path5               = 'global/figures/Instructions/examp5.png'
+    path6               = 'global/figures/Instructions/SA.png'
     pathGif             = 'global/figures/demoMouseCrop.gif'
     pathData            = '_static/global/files/Data4Exp.csv'
     imgCandidate        = "global/figures/candidate.png"
@@ -52,7 +54,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    tree_country = models.StringField(blank=True)
 
 # FUNCTIONS
     
@@ -71,7 +73,7 @@ def creating_session(subsession):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = []
+    form_fields = ['tree_country']
 
     @staticmethod
     def js_vars(player: Player):

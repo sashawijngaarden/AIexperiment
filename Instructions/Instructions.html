@@ -7,43 +7,147 @@
     <!-- Slide 1: Overview -->
     <div class="slide"> 
         <div class="text-container">
-            <h2> Welcome! </h2>
-            <p> In this experiment, you will choose between two fictitious products on each trial. Each product <b>differs in quality, price and sustainability</b>. You will also receive <b>advice</b> from an AI shopping assistant (SA). </p>
-            <ol>
-                <li> On each trial you will see a table with product attributes (price, quality, sustainability) and advice from the AI shopping assistant. </li>
-                <li> Hovering over the attributes reveals their values! </li>
-                <!-- color coded text can help guide participants a bit more -->
-                <!-- I usually make the pictures in powerpoint. -->
-            </ol>
+            <h2> The experiment: </h2>
+            <ul>
+                <li> In this experiment, you will make purhcasing decisions. </li>
+                <li> The products that you will observe are <b>not real.</b></li>
+                <li> There is no physical product, but your <u>decisions</u> will have <b>real consequences.</b></li>
+                <li> Depending on your <u>decisions</u>, you can obtain an additional <b>bonus payment of up to 3</b> and help the environment by <b>planting trees in a location of your choosing.</b></li>
+                <li> The trees will be planted by:
+                    <img src="{{ static 'global/figures/Instructions/OTP.png' }}" alt="One Tree Planted logo" style="height:1.6em; vertical-align: middle;">
+                </li>
+                <li> There are many locations where the trees could be planted. </li>
+                <li> Would you like to choose where to plant the trees? 
+                    <br>
+                    <label for="tree-country">Select a country:</label>
+                    <input type="text" id="tree-country" name="tree-country-visible" list="countryList" class="text-input" placeholder="e.g., Kenya">
+                    <datalist id="countryList">
+                        <option value="Brazil"></option>
+                        <option value="Canada"></option>
+                        <option value="Colombia"></option>
+                        <option value="Costa Rica"></option>
+                        <option value="Dominican Republic"></option>
+                        <option value="Ecuador"></option>
+                        <option value="Guatemala"></option>
+                        <option value="Haiti"></option>
+                        <option value="Honduras"></option>
+                        <option value="India"></option>
+                        <option value="Indonesia"></option>
+                        <option value="Kenya"></option>
+                        <option value="Mexico"></option>
+                        <option value="Peru"></option>
+                        <option value="Rwanda"></option>
+                        <option value="Tanzania"></option>
+                        <option value="Uganda"></option>
+                        <option value="United States"></option>
+                        <option value="Vietnam"></option>
+                    </datalist>
+                    <input type="hidden" name="tree_country" id="tree_country_hidden">
+                </li>
+            </ul>
             <i>Press → to continue reading </i>
+        </div>
+    </div>
+
+    <!-- Slide 2: Detailed explanation -->
+    <div class="slide"> 
+        <div class="text-container">
+            <h2>How it works: </h2>
+            <p> In this experiment you will:</p>
+            <ul>
+                <li> Make multiple purchasing decisions (<b>57 rounds</b>). </li>
+                <li> In each round, you will see <b>2 products</b> and their characteristics.</li>
+                <li> You will also get a recommendation from an AI shopping assistant (SA) recommending either product A or product B in each round. </li>
+                <li> These products are not real, but their benefits are.</li>
+                <li> The next slide explains the benefits and characteristics of the products.</li>
+            </ul>
+        </div>
+        <div class="img-container"> <img src="{{ static C.path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
+    </div> 
+
+    <!-- Slide 3: The product characeristics-->
+    <div class="slide">
+        <div class="text-container">
+            <h2> The product characeristics:</h2>
+            <ul>
+                <li>
+                    <b>Price:</b> This is the cost you need to pay for the product. The price is in <b>£</b>.
+                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                        Higher price -> lower bonus payments.
+                    </div>
+                </li>
+                
+                <li>
+                    <b>Quality:</b> 1-3 star rating. Products with more stars are more likely to have higher quality.
+                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                        Higher quality -> higher bonus payments.
+                    </div>
+                </li>
+
+                <li>
+                    <b>Sustainability:</b> 1-3 leaf rating. Products with more leafs are more likely to be more sustainable.
+                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                        Higher sustainability -> more trees planted.
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="img-container"> <img src="{{ static C.path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
     </div>
 
+    <!-- Slide 4: Value of labels -->
+    <div class="slide">
+        <div class="side-by-side-container">
+            <!-- left block -->
+             <div class="text-block">
+                <h3>Quality:</h3>
+                <ul>
+                    <li>Quality is measured in Quality points <div style="font-style: italic;">(10 points = £0.50).</div></li>
+                    <li>Quality points go from 60 to 90. This means that the worst possible product (in terms of quality) is worth 3£ and the best one is worth 4.5£</li>
+                    <li>If a product has <b>more stars</b> (&#11088;), it means that you get <b>more Quality points</b> on average.</li>
+                </ul>
+             </div>
 
-    <!-- Slide 2: Detailed explanation -->
-    <div class="slide vertical"> 
-        <div class="img-container"> <img src="{{ static C.path2 }}" class="img-instructions" alt="example of decision screen" id="img-example2"> </div>
+             <!-- right block -->
+              <div class="text-block">
+                <h3>Sustainability:</h3>
+                <ul>
+                    <li>Sustainability is measured in Sustainability points <div style="font-style: italic;">(10 points = 1 tree planted).</div></li>
+                    <li>Sustainability points go from 10 to 30. This means that the worst possible product (in terms of sustainability) will plant 1 tree and the best will plant 3 trees.</li>
+                    <li>If a product has <b>more leafs</b> (&#127807;), it means that you get <b>more Sustainability points</b> on average.</li>
+                </ul>
+              </div>
+
+        </div>
+    </div>
+
+    <!-- Slide 5: AI recommendation -->
+    <div class="slide vertical">
+        <div class="img-container"> <img src="{{ static C.path6 }}" class="img-instructions" alt="example of decision screen" id="img-example6"> </div>
         <div class="text-container">
-            <h2> How it works: </h2>
+            <h2>AI shopping assitant (SA):</h2>
             <ul>
-                <li> Move your mouse over an attribute (price, quality, sustainability) to reveal its values. </li>
-                <li> For advice, hover over the entire row to see the recommendation. </li>
-                <!-- Remember that <div class="redbold">color-coded</div>, <b>bold</b> or <i>italic</i> text might help -->
-                <!-- You can put horizontal pictures too! -->
+                <li>In each round, you will receive <b>a recommendation</b> from an AI shopping assistant (SA).</li>
+                <li>The SA suggests either Product A or B.</li>
+                <li>You are <b>free to follow or ignore</b> the recommendation.</li>
             </ul>
         </div>
-        <div class="img-container"> <img src="{{ static C.path3 }}" class="img-instructions" alt="example of decision screen" id="img-example3"> </div>
-        <div class="text-container">
-            <ul>
-                <li> Make your choice by <div class="redbold">clicking the button</div> for either Product A or Product B. </li>
-            </ul>
-        </div>
-    </div> 
+     </div>
 
-    <!-- Slide 3: Confidence -->
+    <!-- Slide 6: Purchasing platform -->
+     <div class="slide horizontal">
+        <div class="text-container">
+            <h2>Revealing attributes:</h2>
+            <p>The product characteristics (Price, Quality, Sustainability) and AI advice for each product will be behind <i>'boxes'</i>.</p>
+            <p>To reveal the information, all you need to do is to <b>move your mouse on top of the <i>'box'</i></b> and the information will be revealed. </p>
+            <p>Here is an example:</p>
+        </div>
+        <div class="img-container"> <img src="{{ static 'global/figures/Instructions/Hover.gif' }}" alt="Demo of hover interaction" class="img-instructions" style="width: 80%;"></div>
+    </div>
+
+    <!-- Slide 6: Confidence rating -->
      <div class="slide vertical">
-        <div class="img-container"> <img src="{{ static C.path4 }}" class="img-instructions" alt="example of decision screen" id="img-example4"> </div>
+        <div class="img-container"> <img src="{{ static C.path5 }}" class="img-instructions" alt="example of decision screen" id="img-example5"> </div>
         <div class="text-container">
             <p> After each decision, you will rate how <b>confident</b> you are in your choice. </p>
             <p> First, you will complete 3 practice trials to get familiar with the task. </p>
@@ -51,10 +155,10 @@
     </div>
 
 
-    
-    <!-- Slide 4: Control questions -->
+    <!-- Slide 7: Control questions -->
     <div class="slide"> 
         <div class="text-container questions-container">
+            <p>Is everything clear? Please answer these questions correctly to proceed:</p>
             <ul>
                 <!--Question 1-->
                 <li>
@@ -74,7 +178,7 @@
 
                 <!-- Hint -->
                 <div class="hint" id="hint1">
-                    Incorrect: Go back to the instructions slide.
+                    Incorrect: Go back to the previous slide.
                 </div>
 
                 <!--Question 2-->
@@ -87,13 +191,13 @@
                             <option value="nothing">--Select--</option>
                             <option value="a"> Click it </option>
                             <option value="b"> It is always visible </option>
-                            <option value="c"> Hover over it  </option>
+                            <option value="c"> Move over it  </option>
                         </select>
                     </div>
                 </li>
 
                 <div class="hint" id="hint2">
-                    Incorrect: Go back to the instructions slide.
+                    Incorrect: Go back to the slide "Revealing attributes".
                 </div>
 
 
@@ -109,7 +213,7 @@
                 </li>
                 
                 <div class="hint" id="hint7">
-                    Incorrect: see the previous slide
+                    Incorrect: please read instructions again.
                 </div>
                 <li>
             <!-- Submit answers and Next button (next button appears when user answers all questions correctly)-->
@@ -132,8 +236,8 @@
         height: auto;
     }
 
-    #img-example2 {
-        width: 30vw;
+    #img-example22 {
+        width: 60vw;
         height: auto;
     }
 
@@ -147,8 +251,32 @@
         height: auto;
     }
 
+    #img-example5 {
+        width: 40vw;
+        height: auto;
+    }
+
+    #img-example6 {
+        width: 40vw;
+        height: auto;
+    }
+
     .text-container {
         font-size: larger;
+    }
+
+    .side-by-side-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem; /* spacing between columns */
+        margin-top: 1rem;
+    }
+
+    .text-block {
+        width: 48%;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 </style>
 {{ endblock }}

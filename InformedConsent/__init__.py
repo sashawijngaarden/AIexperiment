@@ -16,7 +16,7 @@ class C(BaseConstants):
     # TimeOut Seconds 
     timeout_seconds = 60 # Amount of seconds before timeout. If 0, no timeout
     # Template variables
-    AvgDur              = '15'
+    AvgDur              = '15-20'
     # Figures paths
     figUvA_logo         = 'global/figures/UvA_logo.png'
 
