@@ -25,13 +25,13 @@ class C(BaseConstants):
     iBonus              = '2 pounds'
     # Figs/Files paths
     figUvA_logo         = 'global/figures/UvA_logo.png'
-    path1               = 'global/figures/Instructions/examp1.png'
-    path2               = 'global/figures/Instructions/examp2.png'
-    path3               = 'global/figures/Instructions/examp3.png'
-    path4               = 'global/figures/Instructions/examp4.png'
-    path5               = 'global/figures/Instructions/examp5.png'
-    path6               = 'global/figures/Instructions/SA.png'
-    pathGif             = 'global/figures/demoMouseCrop.gif'
+    path1HL             = 'global/figures/Instructions/examp1HL.png'
+    path1NL             = 'global/figures/Instructions/examp1NL.png'
+    path2HL             = 'global/figures/Instructions/HL.png'
+    path2NL             = 'global/figures/Instructions/SA.png'
+    path3               = 'global/figures/Instructions/confidence.png'
+    pathGifHL           = 'global/figures/Instructions/Hover_HL.gif'
+    pathGifNL           = 'global/figures/Instructions/Hover_NL.gif'
     pathData            = '_static/global/files/Data4Exp.csv'
     imgCandidate        = "global/figures/candidate.png"
     imgNumbers          = "global/figures/numbers/n_"
@@ -83,20 +83,19 @@ class Instructions(Page):
         return dict(
             lSolutions = [
                 'b','c', 'yes' # Solutions to control questions
-            ]
+            ],
         )
-    
+
     @staticmethod
-    def before_next_page(player: Player, timeout_happened):
-        if not player.tree_country:
-            player.tree_country = random.choice([
-                'Brazil', 'Canada', 'Colombia', 'Costa Rica', 'Dominican Republic',
-                'Ecuador', 'Guatemala', 'Haiti', 'Honduras', 'India', 'Indonesia',
-                'Kenya', 'Mexico', 'Peru', 'Rwanda', 'Tanzania', 'Uganda',
-                'United States', 'Vietnam'
-            ])
-        player.participant.vars["tree_country"] = player.tree_country
-    
+    def vars_for_template(player: Player):
+        p = player.participant
+        condition = p.condition
+        return dict(
+            path1=C.path1HL if condition in ['VHL', 'SHL'] else C.path1NL,
+            path2=C.path2HL if condition in ['VHL', 'SHL'] else C.path2NL,
+            pathGif=C.pathGifHL if condition in ['VHL', 'SHL'] else C.pathGifNL,
+            path5=C.path3
+        )
 
 page_sequence = [Instructions]
 

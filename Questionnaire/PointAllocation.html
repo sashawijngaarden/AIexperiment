@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% block content %}
+
+<h3>Distribute 10 points across the following attributes:</h3>
+
+<p>You have <span id="pointsLeft">10</span> points left to assign.</p>
+
+<table>
+    <tr>
+        <td>Sustainability: <span id="sustainability_val">0</span></td>
+        <td><input type="range" name="sustainability_points" id="sustainability" min="0" max="10" value="0"></td>
+    </tr>
+    <tr>
+        <td>Quality: <span id="quality_val">0</span></td>
+        <td><input type="range" name="quality_points" id="quality" min="0" max="10" value="0"></td>
+    </tr>
+    <tr>
+        <td>Price: <span id="price_val">0</span></td>
+        <td><input type="range" name="price_points" id="price" min="0" max="10" value="0"></td>
+    </tr>
+    <tr>
+        <td>AI Advice: <span id="ai_val">0</span></td>
+        <td><input type="range" name="ai_advice_points" id="ai_advice" min="0" max="10" value="0"></td>
+    </tr>
+</table>
+
+<button id="submit-button" class="btn btn-primary">Next</button>
+
+<script>
+    const maxTotal = 10;
+    const sliders = ['sustainability', 'quality', 'price', 'ai_advice'];
+    const valDisplays = ['sustainability_val', 'quality_val', 'price_val', 'ai_val'];
+    const submitButton = document.getElementById('submit-button');
+
+    function updateTotal() {
+        let total = 0;
+        sliders.forEach((id, index) => {
+            const slider = document.getElementById(id);
+            const val = parseInt(slider.value);
+            document.getElementById(valDisplays[index]).textContent = val;
+            total += val;
+        });
+        document.getElementById('pointsLeft').textContent = maxTotal - total;
+
+        submitButton.disabled = total !== maxTotal;
+    }
+
+    sliders.forEach(id => {
+        document.getElementById(id).addEventListener('input', updateTotal);
+    });
+
+    updateTotal();
+
+    submitButton.addEventListener('click', function () {
+        if (parseInt(document.getElementById('pointsLeft').textContent) === 0) {
+            document.forms[0].submit();
+        }
+    });
+</script>
+
+{% endblock %}

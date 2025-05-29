@@ -1,7 +1,57 @@
 {{ extends "global/Page.html" }}
 
 {{ block styles }}
+<style>
+body {
+    background-color: #EDE7DC;
+    margin: 0;
+    padding: 0;
+}
 
+.page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.likert-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.likert-btns {
+    border: 1px solid black;
+    background-color: #3c797d;
+    color: white;
+    font-size: 1.6rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.likert-left,
+.likert-right {
+    margin: 0 1rem;
+    font-weight: 500;
+    padding: 0 1rem;
+}
+</style>
 {{ endblock }}
 
 {{ block scripts }}

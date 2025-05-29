@@ -27,3 +27,24 @@
 </div>
 
 {% endblock %}
+
+{{ block styles }}
+<style>
+    body {
+        background-color: #EDE7DC;
+    }
+    
+    .practice-msg {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        text-align: center;
+    }
+
+    .practice-msg h2 {
+        font-size: 1.8em; /* slightly bigger by default*/
+    }
+</style>
+{{ endblock }}

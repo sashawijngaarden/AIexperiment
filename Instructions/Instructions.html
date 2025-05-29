@@ -2,7 +2,8 @@
 
 
 {{ block Slides }}
-<!-- <input type="hidden" id="no-checks"> -->
+
+<div class="instructions-wrapper"></div> <!-- ADDED -->
 
     <!-- Slide 1: Overview -->
     <div class="slide"> 
@@ -19,7 +20,7 @@
                 <li> There are many locations where the trees could be planted. </li>
                 <li> Would you like to choose where to plant the trees? 
                     <br>
-                    <label for="tree-country">Select a country:</label>
+                    <label for="tree_country">Select a country:</label>
                     <input type="text" id="tree_country" name="tree_country" list="countryList" class="text-input" placeholder="e.g., Kenya">
                     <datalist id="countryList">
                         <option value="Brazil"></option>
@@ -61,7 +62,7 @@
                 <li> The next slide explains the benefits and characteristics of the products.</li>
             </ul>
         </div>
-        <div class="img-container"> <img src="{{ static C.path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
+        <div class="img-container"> <img src="{{ static path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
     </div> 
 
     <!-- Slide 3: The product characeristics-->
@@ -71,58 +72,57 @@
             <ul>
                 <li>
                     <b>Price:</b> This is the cost you need to pay for the product. The price is in <b>£</b>.
-                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                    <div style="font-size: 0.9em; font-style: italic; margin-left: 1.5em; margin-top: 0.2em;">
                         Higher price -> lower bonus payments.
                     </div>
                 </li>
                 
                 <li>
                     <b>Quality:</b> 1-3 star rating. Products with more stars are more likely to have higher quality.
-                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                    <div style="font-size: 0.9em; font-style: italic; margin-left: 1.5em; margin-top: 0.2em;">
                         Higher quality -> higher bonus payments.
                     </div>
                 </li>
 
                 <li>
                     <b>Sustainability:</b> 1-3 leaf rating. Products with more leafs are more likely to be more sustainable.
-                    <div style="font-size: 0.9em; font-style: italic; margin-left; 1.5em; margin-top: 0.2em;">
+                    <div style="font-size: 0.9em; font-style: italic; margin-left: 1.5em; margin-top: 0.2em;">
                         Higher sustainability -> more trees planted.
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="img-container"> <img src="{{ static C.path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
+        <div class="img-container"> <img src="{{ static path1 }}" class="img-instructions" alt="example of decision screen" id="img-example1"> </div>
     </div>
 
     <!-- Slide 4: Value of labels -->
     <div class="slide">
         <div class="side-by-side-container">
             <!-- left block -->
-             <div class="text-block">
+            <div class="text-block">
                 <h3>Quality:</h3>
                 <ul>
                     <li>Quality is measured in Quality points <div style="font-style: italic;">(10 points = £0.50).</div></li>
                     <li>Quality points go from 60 to 90. This means that the worst possible product (in terms of quality) is worth 3£ and the best one is worth 4.5£</li>
                     <li>If a product has <b>more stars</b> (&#11088;), it means that you get <b>more Quality points</b> on average.</li>
                 </ul>
-             </div>
+            </div>
 
              <!-- right block -->
-              <div class="text-block">
+            <div class="text-block">
                 <h3>Sustainability:</h3>
                 <ul>
                     <li>Sustainability is measured in Sustainability points <div style="font-style: italic;">(10 points = 1 tree planted).</div></li>
                     <li>Sustainability points go from 10 to 30. This means that the worst possible product (in terms of sustainability) will plant 1 tree and the best will plant 3 trees.</li>
                     <li>If a product has <b>more leafs</b> (&#127807;), it means that you get <b>more Sustainability points</b> on average.</li>
                 </ul>
-              </div>
-
+            </div>
         </div>
     </div>
 
     <!-- Slide 5: AI recommendation -->
     <div class="slide vertical">
-        <div class="img-container"> <img src="{{ static C.path6 }}" class="img-instructions" alt="example of decision screen" id="img-example6"> </div>
+        <div class="img-container"> <img src="{{ static path2 }}" class="img-instructions" alt="example of recommendation" id="img-example2"> </div>
         <div class="text-container">
             <h2>AI shopping assitant (SA):</h2>
             <ul>
@@ -141,12 +141,12 @@
             <p>To reveal the information, all you need to do is to <b>move your mouse on top of the <i>'box'</i></b> and the information will be revealed. </p>
             <p>Here is an example:</p>
         </div>
-        <div class="img-container"> <img src="{{ static 'global/figures/Instructions/Hover.gif' }}" alt="Demo of hover interaction" class="img-instructions" style="width: 80%;"></div>
+        <div class="img-container"> <img src="{{ static pathGif }}" alt="Demo of hover interaction" class="img-instructions" style="width: 80%;"></div>
     </div>
 
     <!-- Slide 6: Confidence rating -->
      <div class="slide vertical">
-        <div class="img-container"> <img src="{{ static C.path5 }}" class="img-instructions" alt="example of decision screen" id="img-example5"> </div>
+        <div class="img-container"> <img src="{{ static path5 }}" class="img-instructions" alt="example of decision screen" id="img-example5"> </div>
         <div class="text-container">
             <p> After each decision, you will rate how <b>confident</b> you are in your choice. </p>
             <p> First, you will complete 3 practice trials to get familiar with the task. </p>
@@ -214,15 +214,15 @@
                 <div class="hint" id="hint7">
                     Incorrect: please read instructions again.
                 </div>
-                <li>
             <!-- Submit answers and Next button (next button appears when user answers all questions correctly)-->
                 <button type="button" id="submitAnswer" class="button" onclick="ValidateSaveSubmit()"> Submit </button>
-                </li>
             </ul>
         </div>
         
     </div>
-    
+
+</div> <!-- ADDED -->
+
 {{ endblock }}
 
 {{ block app_styles }}
@@ -290,8 +290,8 @@
   }
 
   window.addEventListener("DOMContentLoaded", ()=>{
-    document.getElementById("tree-country").addEventListener("change", function () {
-        document.getElementById("tree-country-hidden").value = this.value;
+    document.getElementById("tree_country").addEventListener("change", function () {
+        document.getElementById("tree_country_hidden").value = this.value;
     });
     // Get divs to add tooltips
     let lGreen = document.getElementsByClassName("greenbold");
