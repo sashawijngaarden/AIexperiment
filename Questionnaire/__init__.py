@@ -48,6 +48,10 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     iCorrect = models.IntegerField()
     tree_country = models.StringField(blank=True)
+    sustainability_points = models.IntegerField(label="Sustainability")
+    quality_points = models.IntegerField(label="Quality")
+    price_points = models.IntegerField(label="Price")
+    advice_points = models.IntegerField(label="AI Advice")
 
 for i in range(len(C.lVars)):
     name, bBlank = C.lVars[i]
@@ -56,6 +60,17 @@ for i in range(len(C.lVars)):
 
 
 # PAGES
+class PointAllocation(Page):
+    template_name = 'Questionnaire/PointAllocation.html'
+    form_model = 'player'
+    form_fields = ['sustainability_points', 'quality_points', 'price_points', 'advice_points']
+
+    @staticmethod
+    def error_message(player, values):
+        total = values['sustainability_points'] + values['quality_points'] + values['price_points'] + values['advice_points']
+        if total != 10:
+            return "The total must be exactly 10 points." 
+
 class Questionnaire(Page):
     template_name = 'global/Questionnaire.html'
 
@@ -90,4 +105,4 @@ class EndMessage(Page):
             country=player.participant.vars.get('tree_country', "a selected location")
         )
     
-page_sequence = [AfterTask,Questionnaire,EndMessage]
+page_sequence = [AfterTask,PointAllocation,Questionnaire,EndMessage]

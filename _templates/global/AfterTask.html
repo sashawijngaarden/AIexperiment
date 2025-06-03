@@ -1,8 +1,49 @@
 {% extends "global/Page.html" %}
 
-{% block PageContent %}
+{{ block styles }}
+<style>
+    body {
+        background-color: #EDE7DC;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .centered-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+    }
 
-<div class="center-msg">
+    .continue-btn {
+        background-color: #3c797d;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .continue-btn:hover {
+        background-color: #3b665a;
+    }
+
+</style>
+{{ endblock }}
+
+{% block PageContent %}
+<div class="centered-container">
     <h2>End of main task</h2>
     <p>
         You have now completed all trials of the main task.
@@ -21,13 +62,3 @@
 </div>
 
 {% endblock %}
-
-{{ block styles }}
-<style>
-    body {
-        background-color: #EDE7DC;
-        margin: 0;
-        padding: 0;
-    }
-</style>
-{{ endblock }}

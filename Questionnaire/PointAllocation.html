@@ -1,30 +1,91 @@
 {% extends "global/Page.html" %}
+
+{{ block styles }}
+<style>
+    body {
+        background-color: #EDE7DC;
+        margin: 0;
+        padding: 0;
+    }
+
+    .styled-btn {
+        background-color: #3c797d;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 2rem;
+    }
+
+    .styled-btn:hover {
+        background-color: #2f5f61;
+    }
+
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 200px;
+        height: 6px;
+        border-radius: 3px;
+        background: #ccc;
+        outline: none;
+        transition: background 0.2s ease-in-out;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #3c797d;
+        cursor: pointer;
+        border: none;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #3c797d;
+        cursor: pointer;
+        border: none;
+    }
+
+</style>
+{{ endblock }}
+
 {% block content %}
 
-<h3>Distribute 10 points across the following attributes:</h3>
+<div style="display: flex; align-items: center; justify-content: center; height: 80vh;">
+    <div style="text-align: center; max-width: 600px;">
+        <h2>Distribute 10 points across the following attributes:</h2>
+        <p>You have <span id="pointsLeft">10</span> points left to assign.</p>
 
-<p>You have <span id="pointsLeft">10</span> points left to assign.</p>
+        <table class="table" style="margin: auto;">
+            <tr>
+                <td>Sustainability: <span id="sustainability_val">0</span></td>
+                <td><input type="range" name="sustainability_points" id="sustainability" min="0" max="10" value="0"></td>
+            </tr>
+            <tr>
+                <td>Quality: <span id="quality_val">0</span></td>
+                <td><input type="range" name="quality_points" id="quality" min="0" max="10" value="0"></td>
+            </tr>
+            <tr>
+                <td>Price: <span id="price_val">0</span></td>
+                <td><input type="range" name="price_points" id="price" min="0" max="10" value="0"></td>
+            </tr>
+            <tr>
+                <td>AI Advice: <span id="ai_val">0</span></td>
+                <td><input type="range" name="advice_points" id="ai_advice" min="0" max="10" value="0"></td>
+            </tr>
+        </table>
 
-<table>
-    <tr>
-        <td>Sustainability: <span id="sustainability_val">0</span></td>
-        <td><input type="range" name="sustainability_points" id="sustainability" min="0" max="10" value="0"></td>
-    </tr>
-    <tr>
-        <td>Quality: <span id="quality_val">0</span></td>
-        <td><input type="range" name="quality_points" id="quality" min="0" max="10" value="0"></td>
-    </tr>
-    <tr>
-        <td>Price: <span id="price_val">0</span></td>
-        <td><input type="range" name="price_points" id="price" min="0" max="10" value="0"></td>
-    </tr>
-    <tr>
-        <td>AI Advice: <span id="ai_val">0</span></td>
-        <td><input type="range" name="ai_advice_points" id="ai_advice" min="0" max="10" value="0"></td>
-    </tr>
-</table>
+        <button id="submit-button" type="button" class="styled-btn">Next</button>
+    </div>
+</div>
 
-<button id="submit-button" class="btn btn-primary">Next</button>
 
 <script>
     const maxTotal = 10;

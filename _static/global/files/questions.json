@@ -61,57 +61,42 @@
 
 
     {
-        "question": "I am interested in using AI systems in my daily life.",
-        "name": "interest_AI",
+        "question": "I fear Artificial Intelligence.",
+        "name": "fear_AI",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 10,
         "limits": ["Strongly disagree","Strongly agree"]
     },
     {
-        "question": "AI is exciting.",
-        "name": "excitement_AI",
+        "question": "I trust Artificial Intelligence.",
+        "name": "trust_AI",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 10,
         "limits": ["Strongly disagree","Strongly agree"]
     },
     {
-        "question": "An AI agent would be better than an employee in many routine jobs.",
-        "name": "competition_AI",
-        "type": "Likert",
-        "likertMax": 5,
-        "limits": ["Strongly disagree","Strongly agree"]
-    },
-    {
-        "question": "I shiver with discomfort when I think about future uses of AI.",
-        "name": "future_AI",
-        "type": "Likert",
-        "likertMax": 5,
-        "limits": ["Strongly disagree","Strongly agree"]
-    },
-    {
-        "question": "Organisations use AI unethically.",
-        "name": "ethical_AI",
-        "type": "Likert",
-        "likertMax": 5,
-        "limits": ["Strongly disagree","Strongly agree"]
-    },
-    {
-        "question": "I think AI is dangerous.",
+        "question": "Artificial Intelligence will destroy humankind.",
         "name": "danger_AI",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 10,
+        "limits": ["Strongly disagree","Strongly agree"]
+    },
+    {
+        "question": "Artificial Intelligence will benefit humankind.",
+        "name": "benefit_AI",
+        "type": "Likert",
+        "likertMax": 10,
+        "limits": ["Strongly disagree","Strongly agree"]
+    },
+    {
+        "question": "Artificial Intelligence will cause many job losses.",
+        "name": "competition_AI",
+        "type": "Likert",
+        "likertMax": 10,
         "limits": ["Strongly disagree","Strongly agree"]
     },
 
 
-    {
-        "question": "What was the most important factor for your decisions?",
-        "name": "motivation",
-        "type": "radio",
-        "direction": "horizontal wrap",
-        "values": [1,2,3,4],
-        "labels": ["Price", "Sustainability", "Quality", "Advice"]
-    },
     {
         "question": "Did you follow the AI's advice?",
         "name": "follow_advice",
@@ -126,13 +111,6 @@
         "type": "Likert",
         "likertMax": 7,
         "limits": ["Own preferences", "AI's suggestions"]
-    },
-    {
-        "question": "I would accept this kind of AI recommender system in real online shopping environments.",
-        "name": "reallife_AI",
-        "type": "Likert",
-        "likertMax": 7,
-        "limits": ["Strongly disagree", "Strongly agree"]
     },
 
     
@@ -158,49 +136,56 @@
         "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
+    {
+        "question": "I would accept this kind of AI recommender system in real online shopping environments.",
+        "name": "reallife_AI",
+        "type": "Likert",
+        "likertMax": 7,
+        "limits": ["Strongly disagree", "Strongly agree"]
+    },
  
 
 
     {
-        "question": "Sustainable development requires a fair distribution of goods and services among people in the world.",
-        "name": "sustainable_development",
+        "question": "It is important to me that the products I use do not harm the environment.",
+        "name": "harmless_shopping",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
     {
-        "question": "I think that we need stricter laws and regulations to protect the environment.",
-        "name": "environmental_laws",
+        "question": "I consider the potential environmental impact of my actions when making many of my decisions.",
+        "name": "environmental_impact",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
     {
-        "question": "I think that we who are living now should make sure that people in the future enjoy the same quality of life as we do today.",
-        "name": "sustainable_responsibility",
+        "question": "My purchase habits are affected by my concern for our environment.",
+        "name": "concerned_shopping",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
     {
-        "question": "I think that companies have a responsibility to reduce the use of packaging and disposable articles.",
-        "name": "company_responsibility",
+        "question": "I am concerned about wasting the resources of our planet.",
+        "name": "wasting_resources",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
     {
-        "question": "I have changed my personal lifestyle in order to reduce waste (e.g., throwing away less food or not wasting materials).",
-        "name": "sustainable_behavior",
+        "question": "I would describe myself as environmentally responsible.",
+        "name": "environmentally_responsible",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     },
     {
-        "question": "I avoid buying goods from companies with a bad reputation for looking after their employees and the environment.",
-        "name": "company_reputation",
+        "question": "I am willing to be inconvenienced in order to take actions that are more environmentally friendly.",
+        "name": "inconvencience",
         "type": "Likert",
-        "likertMax": 5,
+        "likertMax": 7,
         "limits": ["Strongly disagree", "Strongly agree"]
     }
 

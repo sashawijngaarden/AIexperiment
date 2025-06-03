@@ -14,7 +14,7 @@ the rest are real and one will be randomly selected for the bonus payout.
 class C(BaseConstants):
     NAME_IN_URL = 'Task'
     PLAYERS_PER_GROUP = None
-    NUM_RROUNDS = 20 # Real Rounds
+    NUM_RROUNDS = 3 # Real Rounds
     NUM_PROUNDS = 3 # Practice Rounds
     NUM_ROUNDS = NUM_PROUNDS + NUM_RROUNDS
     # List of attributes (id)
@@ -84,6 +84,7 @@ class Player(BasePlayer):
     S1 = models.IntegerField()
     S2 = models.IntegerField()
     Nudge = models.StringField()
+    sRecommendation = models.StringField() # stores A or B
 
 def creating_session(subsession):
     # Load Session variables
@@ -141,8 +142,18 @@ def creating_session(subsession):
         player.S2               = trialValues['S2']
         col_name                = f'Nudge-{p.condition}'
         player.sustRight        = trialValues['sustRight']
-        advice_text             = trialValues[col_name]
+        original_advice_text    = trialValues[col_name]
 
+        # Determine recommended product with original text
+        if "Product A" in original_advice_text:
+            player.sRecommendation = 'A'
+        elif "Product B" in original_advice_text:
+            player.sRecommendation = 'B'
+        else:
+            player.sRecommendation = 'unknown'
+
+        # Adjust text for participant if sutainable product is on the right
+        advice_text = original_advice_text
         if player.sustRight:
             if "Product A" in advice_text:
                 advice_text = advice_text.replace("Product A", "Product B")
@@ -236,13 +247,25 @@ class Decision(Page):
             p.sChoice = player.sChoice   #save choice
 
             if player.sChoice == 'A':
-                value_score = player.P1
+                value_score = player.Q1
                 sust_score = player.S1
+                price_score = player.P1
             else:
-                value_score = player.P2
+                value_score = player.Q2
                 sust_score = player.S2
+                price_score = player.P2
 
-            bonus = 1.00 + ((8.00 - value_score) / 3.0)
+            if value_score == 1:
+                value_in_pounds = 160 * 0.05
+            elif value_score == 2:
+                value_in_pounds = 180 * 0.05
+            elif value_score == 3:
+                value_in_pounds = 200 * 0.05
+            else:
+                value_in_pounds = 'unknown'
+            print(f"[DEBUG] Value is {value_in_pounds} pounds")
+
+            bonus = value_in_pounds - price_score
             trees = sust_score
 
             player.payoff = round(bonus, 2)
