@@ -13,7 +13,7 @@
         Your bonus consists of:
     </p>
 
-    <ul style="text-align: left, max-width: 600px, margin: 0 auto;">
+    <ul style="text-align: left, max-width: 600px; margin: 0 auto;">
         <li><b>Monetary reward:</b> £{{ bonus }}</li>
         <li><b>Environmental reward:</b> {{ trees }} tree(s) will be planted in {{ country }}.</li>
 
@@ -32,19 +32,49 @@
 <style>
     body {
         background-color: #EDE7DC;
+        margin: 0;
+        padding: 0;
+        height: 100%;
     }
     
-    .practice-msg {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 80vh;
+    .center-msg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
         text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        width: 90%;
+        max-width: 600px;
+        padding: 1rem;
+
     }
 
-    .practice-msg h2 {
+    .center-msg h2 {
         font-size: 1.8em; /* slightly bigger by default*/
+    }
+
+    .center-msg ul {
+        text-align: left;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .continue-btn {
+        background-color: #3c797d;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .continue-btn:hover {
+        background-color: #3b665a;
     }
 </style>
 {{ endblock }}

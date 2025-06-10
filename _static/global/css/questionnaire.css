@@ -88,14 +88,18 @@
     border: 2px solid black;
 }
 
-.questionnaire-btns {
-    width: 8vw;
-    height: 5vw;
+.btns-wrapper .questionnaire-btns {
+    width: auto;
+    height: auto;
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
     border: 1px solid var(--border-btn-color);
     background-color: var(--btn-color);
     color: var(--font-btn);
-    margin: 0 2em;
-    border-radius: 5%;
+    margin: 0 1em;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Image buttons */
@@ -228,4 +232,3 @@ input[type="text"] {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }
-

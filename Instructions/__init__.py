@@ -76,6 +76,9 @@ class Instructions(Page):
     form_model = 'player'
     form_fields = ['tree_country']
 
+    def before_next_page(player: Player, timeout_happened):
+        player.participant.vars['tree_country'] = player.tree_country
+
     @staticmethod
     def js_vars(player: Player):
         ## Variables necessary for javascript
