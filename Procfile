@@ -1,2 +1,2 @@
-web: otree prodserver1of2
-worker: otree prodserver2of2
+web: otree runprodserver --port $PORT --prod
+worker: otree rundemoworker --port $PORT
