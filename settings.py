@@ -19,7 +19,7 @@ SESSION_CONFIGS = [
         treatmentAI = 'random',
     ),
     dict(
-        name='ai-experiment',
+        name='ai_experiment',
         display_name ="AI experiment",
         app_sequence=['InformedConsent','Instructions','Task','Questionnaire'],
         num_demo_participants=1,
