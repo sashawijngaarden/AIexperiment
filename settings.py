@@ -19,7 +19,8 @@ SESSION_CONFIGS = [
         treatmentAI = 'random',
     ),
     dict(
-        name='Session',
+        name='ai-experiment',
+        display_name ="AI experiment"
         app_sequence=['InformedConsent','Instructions','Task','Questionnaire'],
         num_demo_participants=1,
         treatment = 'random', # Randomize between-subject treatment. 
