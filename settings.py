@@ -20,7 +20,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='ai-experiment',
-        display_name ="AI experiment"
+        display_name ="AI experiment",
         app_sequence=['InformedConsent','Instructions','Task','Questionnaire'],
         num_demo_participants=1,
         treatment = 'random', # Randomize between-subject treatment. 
@@ -57,8 +57,10 @@ USE_POINTS = True
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
-ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
+ADMIN_PASSWORD = environ.get('ADMIN_PASSWORD')
 
 DEMO_PAGE_INTRO_HTML = """ """
 
-SECRET_KEY = '5401288888583'
+SECRET_KEY = environ.get('SECRET_KEY')
+
+ALLOWED_HOSTS = ['*']
