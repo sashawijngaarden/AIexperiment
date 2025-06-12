@@ -1,3 +1,4 @@
+from otree.settings import *
 from os import environ
 
 SESSION_CONFIGS = [
