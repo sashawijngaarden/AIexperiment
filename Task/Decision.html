@@ -85,7 +85,13 @@
         <div class="row" id="row-{{ attr.id }}">
             <!-- Label: AI image -->
             <div class="table-item right row-name">
-                {{ attr.name|safe }}
+                {% if attr.id == 'N' and attr.name %}
+                    <img src="{%static attr.name%}" height="90">
+                {% elif attr.id == 'N' %}
+                    Advice
+                {% else %}
+                    {{ attr.name }}
+                {% endif %}
             </div>
     
             <!-- Advice text spanning two columns -->

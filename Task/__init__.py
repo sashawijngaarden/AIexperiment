@@ -14,7 +14,7 @@ the rest are real and one will be randomly selected for the bonus payout.
 class C(BaseConstants):
     NAME_IN_URL = 'Task'
     PLAYERS_PER_GROUP = None
-    NUM_RROUNDS = 3 # Real Rounds
+    NUM_RROUNDS = 57 # Real Rounds
     NUM_PROUNDS = 3 # Practice Rounds
     NUM_ROUNDS = NUM_PROUNDS + NUM_RROUNDS
     # List of attributes (id)
@@ -175,9 +175,9 @@ def attributeList(player):
         if id == 'N':
             condition = player.participant.condition
             if condition in ['VHL', 'SHL']:
-                name = '<img src="/static/global/figures/N/humanAI.png" height="90">'
+                name = 'global/figures/N/humanAI.png'
             elif condition in ['VN', 'SN']:
-                name = '<img src="/static/global/figures/N/neutralAI.png" height="90">'
+                name = 'global/figures/N/neutralAI.png'
             else:
                 name = "Advice"
         else:
