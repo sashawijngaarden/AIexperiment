@@ -48,6 +48,12 @@ PARTICIPANT_FIELDS = [
 SESSION_FIELDS = [
 ]
 
+ROOMS = [
+    dict(
+        name='ai_experiment_room',
+        display_name='AI Experiment Room',
+    ),
+]
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
